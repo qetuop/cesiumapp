@@ -1,4 +1,10 @@
+
+
 (function () {
+    // import { // Cannot use import statement outside a module
+    //     Cartesian3,
+    //   } from "CesiumUnminified/index.js";
+
     "use strict";
 
     // TODO: Add your ion access token from cesium.com/ion/
@@ -9,10 +15,48 @@
     //////////////////////////////////////////////////////////////////////////
 
     var viewer = new Cesium.Viewer('cesiumContainer', {
-        scene3DOnly: true,
         selectionIndicator: false,
         baseLayerPicker: false
     });
+
+    // turn off loadingIndicator
+    //const loadingIndicator = document.getElementById("loadingIndicator");
+    //loadingIndicator.style.display = "none";
+
+    const layers = viewer.scene.imageryLayers;
+
+    // the rectangle bounds the size of the image - stretches to fit?
+    const pv = Cesium.ImageryLayer.fromProviderAsync(
+        Cesium.SingleTileImageryProvider.fromUrl(
+            "Images/smile.png",
+            {
+                rectangle: Cesium.Rectangle.fromDegrees(
+                    -0.01,
+                    -0.01,
+                    0.01,
+                    0.01
+                ),
+            }
+        )
+    );
+    layers.add(pv);
+
+    // keeps its natural resolution (sizeInMeters)? and orientation
+    viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(0, 0),
+        billboard: {
+            image: "Images/smile2.png",  
+            sizeInMeters: true,
+        },
+    });
+
+    viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(0, 0,4000),
+        orientation: {
+          heading: Cesium.Math.toRadians(0.0),
+          pitch: Cesium.Math.toRadians(-90.0), // look straight down
+        }
+      });
 
     //////////////////////////////////////////////////////////////////////////
     // Loading Imagery

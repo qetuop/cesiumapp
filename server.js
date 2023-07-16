@@ -1,15 +1,18 @@
 const express = require('express');
 const app = express();
-
-// need to access the nmp_modules files
-
-// try and use gulp to copy files instead?
-//app.use(express.static((__dirname, '/node_modules/cesium/Build')));
-app.use('/scripts', express.static(__dirname + '/node_modules/cesium/Build'));
-//app.use('/css',     express.static(__dirname + '/node_modules/cesium/Build/Cesium/Widgets/'));
+const path = require('path')
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('.'));
+
+// need to access the nmp_modules files, create fake dir
+//app.use('/scripts', express.static(path.join(__dirname, '/node_modules/cesium/Build'))) // <script src="scripts/Cesium/Cesium.js"></script>
+
+// access them directly?
+app.use(express.static(path.join(__dirname, '/node_modules/cesium/Build/')))  // <script src="Cesium/Cesium.js"></script>
+
+// try and use gulp to copy files instead?
+
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {

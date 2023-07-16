@@ -1,7 +1,7 @@
 {
-  "name": "cesium",
+  "name": "VDA",
   "version": "0.0.1",
-  "description": "A simple ceisum app",
+  "description": "A simple VDA app",
   "main": "server.js",
   "scripts": {
       "start": "node server.js"

@@ -1,0 +1,13 @@
+{
+  "name": "VDA",
+  "version": "0.0.1",
+  "description": "A simple VDA app",
+  "main": "server.js",
+  "scripts": {
+      "start": "node server.js"
+  },
+  "dependencies": {
+    "cesium": "^1.107.2",
+    "express": "^4.18.2"
+  }
+}

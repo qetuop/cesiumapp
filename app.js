@@ -26,15 +26,16 @@
     const layers = viewer.scene.imageryLayers;
 
     // the rectangle bounds the size of the image - stretches to fit?
+    // rotates image with rotation
     const pv = Cesium.ImageryLayer.fromProviderAsync(
         Cesium.SingleTileImageryProvider.fromUrl(
             "Images/smile.png",
             {
                 rectangle: Cesium.Rectangle.fromDegrees(
-                    -0.01,
-                    -0.01,
-                    0.01,
-                    0.01
+                    0.001,
+                    0.001,
+                    0.002,
+                    0.002
                 ),
             }
         )
